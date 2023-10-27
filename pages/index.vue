@@ -9,12 +9,6 @@
         :class="{ 'bg-primary-300 text-white': show === 'tasks' }"
         >Task</span
       >
-      <!-- <span
-        @click="show = 'map'"
-        class="p-2"
-        :class="{ 'bg-primary-300 text-white': show === 'map' }"
-        >Map</span
-      > -->
       <span
         @click="show = 'agents'"
         class="p-2"
@@ -29,9 +23,6 @@
           <Tasks />
         </div>
       </transition>
-      <!-- <div v-if="show === 'map'" class="h-full">
-        <Map />
-      </div> -->
       <transition name="fade">
         <div v-if="show === 'agents'">
           <Agents />
@@ -54,7 +45,7 @@
         >
           <svg
             class="transition 200 ease-in"
-            :class="{ 'rotate-180': showTask === false }"
+            :class="{ 'rotate-180': !showTask }"
             width="8"
             height="12"
             viewBox="0 0 8 12"
@@ -82,7 +73,7 @@
         >
           <svg
             class="transition 200 ease-in"
-            :class="{ 'rotate-180': showAgent === false }"
+            :class="{ 'rotate-180': !showAgent }"
             width="8"
             height="12"
             viewBox="0 0 8 12"
@@ -104,16 +95,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      show: "tasks",
-      showTask: true,
-      showAgent: true,
-    };
-  },
-};
+<script setup>
+import { ref } from "vue";
+
+const show = ref("tasks");
+const showTask = ref(true);
+const showAgent = ref(true);
 </script>
 
 <style>

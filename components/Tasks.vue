@@ -10,24 +10,31 @@
 
     <div class="grid grid-cols-3 bg-white text-sm border-b border-gray-200">
       <div
-        class="text-subTitle pl-3 lg:px-4 py-5 cursor-pointer"
+        class="text-subTitle pl-3 lg:px-4 py-5 cursor-pointer font-normal"
         :class="{
-          'border-b-2 border-black !text-black ': show === 'unassigned',
+          'border-b-2 border-black !text-primary-500 font-medium ':
+            show === 'unassigned',
         }"
         @click="show = 'unassigned'"
       >
         24 Unassigned
       </div>
       <div
-        class="text-subTitle pl-3 lg:px-4 py-5 cursor-pointer"
-        :class="{ 'border-b-2 border-black !text-black': show === 'assigned' }"
+        class="text-subTitle pl-3 lg:px-4 py-5 cursor-pointer font-normal"
+        :class="{
+          'border-b-2 border-black !text-primary-500 font-medium':
+            show === 'assigned',
+        }"
         @click="show = 'assigned'"
       >
         12 assigned
       </div>
       <div
-        class="text-subTitle pl-1 lg:px-4 py-5 cursor-pointer"
-        :class="{ 'border-b-2 border-black !text-black': show === 'completed' }"
+        class="text-subTitle pl-1 lg:px-4 py-5 cursor-pointer font-normal"
+        :class="{
+          'border-b-2 border-black !text-primary-500 font-medium':
+            show === 'completed',
+        }"
         @click="show = 'completed'"
       >
         30 Completed
