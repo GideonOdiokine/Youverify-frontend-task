@@ -9,15 +9,15 @@
 
     <div class="grid grid-cols-3 text-sm border-b border-gray-200 bg-white">
       <div
-        class="px-4 py-5 cursor-pointer"
-        :class="{ 'border-b-2 border-black': show === 'all' }"
+        class="text-subTitle px-4 py-5 cursor-pointer"
+        :class="{ 'border-b-2 border-black !text-black': show === 'all' }"
         @click="show = 'all'"
       >
         All
       </div>
       <div
-        class="text-gray-500 px-4 py-5 flex items-center cursor-pointer"
-        :class="{ 'border-b-2 border-black': show === 'online' }"
+        class="text-subTitle px-4 py-5 flex items-center cursor-pointer"
+        :class="{ 'border-b-2 border-black !text-black': show === 'online' }"
         @click="show = 'online'"
       >
         <svg
@@ -33,8 +33,8 @@
         Online
       </div>
       <div
-        class="text-gray-500 px-4 py-5 flex items-center cursor-pointer"
-        :class="{ 'border-b-2 border-black': show === 'offline' }"
+        class="text-subTitle px-4 py-5 flex items-center cursor-pointer"
+        :class="{ 'border-b-2 border-black !text-black': show === 'offline' }"
         @click="show = 'offline'"
       >
         <svg

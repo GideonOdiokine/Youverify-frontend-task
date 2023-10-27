@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss'],
     tailwindcss: {
         config:{
+            mode: 'jit',
             theme: {
                 extend: {
                     colors: {
@@ -20,13 +21,16 @@ export default defineNuxtConfig({
                     fontSize: {
                         12: '12px'
                     },
+                    // backgroundImage: {
+                    //     'map': "url('assets/guyana-distance 1.png')",
+                    // }
                 }
             }
         }
     },
     app: {
         head: {
-            title: "Youverify Assessement",
+            title: "Youverify frontend-assessment",
             meta: [
                 { name: "description", content: "Everything about Youverify" }
             ],

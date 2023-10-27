@@ -44,7 +44,7 @@
       style="height: calc(100vh - 129px)"
     >
       <!-- tasks area start -->
-      <div class="flex">
+      <div class="flex absolute z-10">
         <transition name="tab">
           <Tasks v-show="showTask" />
         </transition>
@@ -71,11 +71,11 @@
       <!-- tasks area end -->
 
       <!-- map area start -->
-      <!-- <Map /> -->
+      <Mapbox />
       <!-- map area end -->
 
       <!-- agents area start -->
-      <div class="flex">
+      <div class="flex absolute right-0 z-10">
         <div
           @click="showAgent = !showAgent"
           class="w-12 h-12 bg-black flex justify-center items-center cursor-pointer"

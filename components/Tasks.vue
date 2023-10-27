@@ -1,6 +1,7 @@
 <template>
   <div class="w-full lg:w-96 bg-white border-l !border-gray-200">
     <!-- tasks -->
+
     <div
       class="w-100 h-12 bg-primary-200 py-2 px-3.5 flex items-center text-white font-semibold"
     >
