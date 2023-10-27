@@ -5,7 +5,7 @@
     <div class="flex">
       <!-- side nav -->
       <transition name="side">
-        <SideNav v-show="showSideNav" />
+        <SideNavbar v-show="showSideNav" />
       </transition>
       <!-- side nav -->
       <div class="flex w-full transition duration-500 ease-in-out">
@@ -17,16 +17,10 @@
   </div>
 </template>
 
-<script>
-import Header from "~/components/Header.vue";
-export default {
-  components: { Header },
-  data() {
-    return {
-      showSideNav: true,
-    };
-  },
-};
+<script setup>
+import { ref } from "vue";
+
+const showSideNav = ref(true); // Use ref to create a reactive variable for showSideNav
 </script>
 
 <style>
