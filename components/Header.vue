@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-full flex justify-between items-center bg-white pl-3 pr-[75px] py-[11px] border-[1px] border-[#F2F2F2] fixed top-0 z-50"
+    class="w-full flex justify-between items-center bg-white pl-3 pr-[20px] md:pr-[75px] py-[11px] border-[1px] border-[#F2F2F2] fixed top-0 z-50"
   >
     <!-- left part of the header start -->
     <div id="left" class="flex items-center">
