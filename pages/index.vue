@@ -1,48 +1,135 @@
 <template>
-  <div class="pt-20 min-h-screen overflow-hidden">
-    <div>Hello</div>
+  <div id="app">
+    <div class="draggable" @dragstart="onDragStart('text')" draggable="true">
+      <i class="fas fa-font"></i> Text Input
+    </div>
+    <div
+      class="draggable"
+      @dragstart="onDragStart('checkbox')"
+      draggable="true"
+    >
+      <i class="fas fa-check-square"></i> Checkbox
+    </div>
+    <div class="droppable" @dragover.prevent @drop="onDrop">
+      <div class="default-input">
+        <label for="name">Name:</label>
+        <input type="text" v-model="name" id="name" placeholder="Enter name" />
+      </div>
+      <div class="default-input">
+        <label for="description">Description:</label>
+        <input
+          type="text"
+          v-model="description"
+          id="description"
+          placeholder="Enter description"
+        />
+      </div>
+      <div
+        v-for="(item, index) in droppedItems"
+        :key="index"
+        class="dropped-item"
+      >
+        <!-- <label
+          :contenteditable="item.type === 'label'"
+          @blur="updateLabel($event, index)"
+          @keydown.enter.prevent=""
+        >
+          {{ item.label }}
+        </label> -->
+        <label
+          @blur="updateLabel($event, index)"
+          v-if="item.type === 'text'"
+          :contenteditable="item.type === 'text'"
+          >Text Input:</label
+        >
+        <input
+          v-if="item.type === 'text'"
+          type="text"
+          v-model="item.value"
+          id="text-input"
+          placeholder="Enter text"
+        />
+        <template v-else-if="item.type === 'checkbox'">
+          <label for="checkbox-input">Checkbox:</label>
+          <input type="checkbox" v-model="item.value" id="checkbox-input" />
+        </template>
+        <button @click="removeItem(index)">Delete</button>
+      </div>
+      <button @click="printFormData">Print Form Data</button>
+    </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const show = ref("tasks");
-const showTask = ref(true);
-const showAgent = ref(true);
+<script>
+export default {
+  data() {
+    return {
+      name: "",
+      description: "",
+      droppedItems: [],
+    };
+  },
+  methods: {
+    onDragStart(itemType) {
+      event.dataTransfer.setData("itemType", itemType);
+    },
+    onDrop(event) {
+      event.preventDefault();
+      const itemType = event.dataTransfer.getData("itemType");
+      if (itemType) {
+        this.droppedItems.push({ type: itemType, label: "Label", value: "" });
+      }
+    },
+    updateLabel(event, index) {
+      this.droppedItems[index].label = event.target.innerText;
+    },
+    removeItem(index) {
+      this.droppedItems.splice(index, 1);
+    },
+    printFormData() {
+      // Collect and print the form data
+      console.log("Name:", this.name);
+      console.log("Description:", this.description);
+      console.log("Dropped Items:", this.droppedItems);
+    },
+  },
+};
 </script>
 
 <style>
-.tab-enter-active,
-.tab-leave-active {
-  transition: 0.5s ease all !important;
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
 }
 
-.tab-enter-from,
-.tab-leave-to {
-  width: 0px;
-  overflow: hidden;
+.default-input {
+  margin-bottom: 10px;
 }
 
-.tab-enter,
-.tab-leave {
-  width: 0px;
-  overflow: hidden;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: 0.2s ease all !important;
+.draggable {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  transform: translateX(-100vw);
-  /* opacity: 0.5; */
+.droppable {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px dashed #ccc;
 }
 
-.fade-enter,
-.fade-leave {
-  transform: translateX(-100vw);
-  /* opacity: 0.5; */
+.dropped-item {
+  margin-top: 10px;
+}
+
+label {
+  font-weight: bold;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 </style>
