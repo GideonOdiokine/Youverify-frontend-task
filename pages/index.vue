@@ -5,26 +5,37 @@
         <h3 class="text-[32px] font-medium text-[#101828] pb-[27px]">
           Form Templates
         </h3>
-        <!-- Search Icon -->
-        <div
-          id="middle"
-          class="w-2/4 justify-between items-center hidden md:flex"
-        >
+        <div class="flex justify-between">
+          <!-- Search Icon -->
           <div
-            id="search"
-            class="w-full rounded-[4px] border-[#CDCFD0] border px-3 bg-white h-14 flex items-center"
+            id="middle"
+            class="w-2/4 justify-between items-center hidden md:flex"
           >
-            <img
-              src="../assets/searchIcon.svg"
-              alt=""
-              class="w-[24px] cursor-pointer mr-[12px] transform hover:translate-x-1 transition 200 ease-in"
-            />
-            <input
-              type="search"
-              class="w-11/12 bg-transparent text-sm outline-none"
-              placeholder="Search templates..."
-            />
+            <div
+              id="search"
+              class="w-full rounded-[4px] border-[#CDCFD0] border px-3 bg-white h-14 flex items-center"
+            >
+              <img
+                src="../assets/searchIcon.svg"
+                alt=""
+                class="w-[24px] cursor-pointer mr-[12px] transform hover:translate-x-1 transition 200 ease-in"
+              />
+              <input
+                type="search"
+                class="w-11/12 bg-transparent text-sm outline-none"
+                placeholder="Search templates..."
+              />
+            </div>
           </div>
+
+          <!--  Create new templates-->
+          <button
+            class="py-3 rounded-[6px] flex items-center text-white text-base font-semibold px-3 bg-[#4D6CBB]"
+          >
+            <img src="../assets/add.svg" alt="plus" class="pr-2" />
+
+            Create new templates
+          </button>
         </div>
       </div>
     </div>
