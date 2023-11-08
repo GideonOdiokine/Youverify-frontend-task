@@ -8,7 +8,9 @@
         <SideNavbar v-show="showSideNav" />
       </transition>
       <!-- side nav -->
-      <div class="flex w-full bg-[#F2F2F2] transition duration-500 ease-in-out">
+      <div
+        class="flex w-full bg-[#F2F2F2] transition duration-500 h-[100vh] ease-in-out"
+      >
         <div class="w-full transition duration-500 ease-in-out">
           <slot />
         </div>

@@ -30,6 +30,7 @@
 
           <!--  Create new templates-->
           <button
+            @click="toggleShowModal"
             class="py-3 rounded-[6px] flex items-center text-white text-base font-semibold px-3 bg-[#4D6CBB]"
           >
             <img src="../assets/add.svg" alt="plus" class="pr-2" />
@@ -39,11 +40,30 @@
         </div>
       </div>
     </div>
+    <modal v-if="showModal" @close="showModal = false">
+      <!--
+      you can use custom content here to overwrite
+      default content
+    -->
+      <h3 slot="header">Create New Template</h3>
+    </modal>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  methods: {
+    toggleShowModal() {
+      this.showModal = !this.showModal;
+      console.log(this.showModal);
+    },
+  },
+};
 </script>
 
 <style></style>
