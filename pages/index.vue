@@ -39,6 +39,7 @@
           </button>
         </div>
       </div>
+      <Table />
     </div>
     <div v-if="showModal">
       <CreateFormModal :close="closeCreateFormModal" />
