@@ -40,62 +40,9 @@
         </div>
       </div>
     </div>
-    <modal v-if="showModal" @close="showModal = false">
-      <template v-slot:header>
-        <div class="flex justify-between mb-6">
-          <h3 class="text-2xl font-medium text-[#101828]">
-            Create New Template
-          </h3>
-          <img
-            src="../assets/close.svg"
-            alt="plus"
-            class="mt-[-20px] cursor-pointer"
-            @click="showModal = false"
-          />
-        </div>
-      </template>
-      <template v-slot:body>
-        <div>
-          <div class="w-full">
-            <label
-              class="block text-sm border-none p-0 pb-2 font-medium mr-0 text-[#101828]"
-              for="name"
-              >Template Name
-            </label>
-            <input
-              id="name"
-              title="name"
-              type="text"
-              placeholder="Input name"
-              class="border border-[#EAECF0] w-full py-3 px-4 rounded-[5px] outline-none"
-              aria-placeholder=""
-            />
-          </div>
-          <div class="w-full mt-6">
-            <label
-              class="block text-sm border-none p-0 pb-2 font-medium mr-0 text-[#101828]"
-              for="Description"
-              >Description
-            </label>
-            <textarea
-              id="Description"
-              title="Description"
-              placeholder="Type message here.."
-              class="border border-[#EAECF0] w-full py-3 px-4 rounded-[5px] outline-none"
-            />
-          </div>
-        </div>
-      </template>
-      <template v-slot:footer>
-        <button
-          class="py-3 rounded-[6px] mx-auto mt-6 flex justify-center items-center text-white text-base font-semibold px-6 bg-[#4D6CBB]"
-        >
-          <!-- <img src="../assets/add.svg" alt="plus" class="pr-2" /> -->
-
-          Create
-        </button>
-      </template>
-    </modal>
+    <div v-if="showModal">
+      <CreateFormModal :close="closeCreateFormModal" />
+    </div>
   </div>
 </template>
 
@@ -109,6 +56,9 @@ export default {
   methods: {
     toggleShowModal() {
       this.showModal = !this.showModal;
+    },
+    closeCreateFormModal() {
+      this.showModal = false;
     },
   },
 };
