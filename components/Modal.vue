@@ -59,7 +59,7 @@ export default {};
 }
 
 .modal-body {
-  margin: 20px 0;
+  font-family: "Roboto", sans-serif;
 }
 
 .modal-default-button {
