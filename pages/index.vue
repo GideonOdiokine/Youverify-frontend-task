@@ -54,6 +54,24 @@
           />
         </div>
       </template>
+      <template v-slot:body>
+        <div class="flex justify-between">
+          <div>
+            <label
+              class="block text-sm border-none p-0 pb-2 font-medium text-[#101828]"
+              for="name"
+              >Template Name
+            </label>
+            <input
+              id="name"
+              title="name"
+              type="text"
+              placeholder="Input name "
+              aria-placeholder=""
+            />
+          </div>
+        </div>
+      </template>
     </modal>
   </div>
 </template>
