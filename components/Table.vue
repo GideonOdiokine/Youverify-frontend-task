@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <table class="border-collapse w-[100%]">
-      <thead class="bg-[#F9FAFB]">
+      <thead class="bg-[#F9FAFB] border-b-[#B2B8BD] border-b">
         <tr class="w-full flex flex-1">
           <th class="py-[17px] flex flex-1 !mx-9">
             <div class="text-[#101828] text-base font-medium">Name</div>
@@ -39,17 +39,29 @@
           </th>
         </tr>
       </thead>
-      <!-- <tbody>
-        <tr v-for="(item, index) in items" :key="index">
-          <td class="border px-4 py-2">{{ item.name }}</td>
-          <td class="border px-4 py-2">{{ item.createdAt }}</td>
-          <td class="border px-4 py-2 flex items-center">
-            {{ item.lastModified }}
-            <i class="fas fa-pencil-alt"></i>
-          </td>
-          <td class="border px-4 py-2">{{ item.createdAt }}</td>
-        </tr>
-      </tbody> -->
+      <!-- <> -->
+      <div class="overflow-auto h-[calc(100%+80px)]">
+        <tbody
+          class="w-full flex pt-[32px]"
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          <tr class="flex-1 !mx-9 font-medium text-sm text-[#101828]">
+            <td>{{ item.name }}</td>
+          </tr>
+          <tr class="flex-1 font-medium text-sm text-[#101828]">
+            <td>{{ item.createdAt }}</td>
+          </tr>
+          <tr class="flex-1 font-medium text-sm text-[#101828]">
+            <td>{{ item.lastModified }}</td>
+          </tr>
+          <tr class="flex-1 font-medium text-sm text-[#101828]">
+            <td>{{ item.createdAt }}</td>
+          </tr>
+          <!-- <td class="px-4 py-2">{{ item.createdAt }}</td> -->
+        </tbody>
+      </div>
+      <!-- </> -->
     </table>
   </div>
 </template>
@@ -71,7 +83,6 @@ export default {
           createdBy: "User B",
           lastModified: "2023-03-20",
         },
-        // Add more items as needed
       ],
     };
   },

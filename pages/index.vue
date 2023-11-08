@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-[80px] py-6 px-6">
-    <div class="bg-white rounded-lg">
+  <div class="mt-[80px] pt-6 px-6">
+    <div class="bg-white rounded-lg !h-[calc(100vh-120px)]">
       <div class="pl-9 pb-9 pt-[53px] pr-12">
         <h3 class="text-[32px] font-medium text-[#101828] pb-[27px]">
           Form Templates
