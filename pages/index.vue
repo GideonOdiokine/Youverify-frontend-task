@@ -41,11 +41,19 @@
       </div>
     </div>
     <modal v-if="showModal" @close="showModal = false">
-      <!--
-      you can use custom content here to overwrite
-      default content
-    -->
-      <h3 slot="header">Create New Template</h3>
+      <template v-slot:header>
+        <div class="flex justify-between">
+          <h3 class="text-2xl font-medium text-[#101828]">
+            Create New Template
+          </h3>
+          <img
+            src="../assets/close.svg"
+            alt="plus"
+            class="mt-[-20px] cursor-pointer"
+            @click="showModal = false"
+          />
+        </div>
+      </template>
     </modal>
   </div>
 </template>
@@ -60,7 +68,6 @@ export default {
   methods: {
     toggleShowModal() {
       this.showModal = !this.showModal;
-      console.log(this.showModal);
     },
   },
 };

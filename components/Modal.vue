@@ -51,16 +51,11 @@ export default {};
 .modal-container {
   width: 566px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 32px 52px;
   background-color: #fff;
   border-radius: 12px;
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
 }
 
 .modal-body {
