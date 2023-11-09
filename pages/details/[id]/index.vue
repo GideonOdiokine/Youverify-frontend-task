@@ -153,7 +153,7 @@
                   >
                     <div
                       id="search"
-                      class="w-full rounded-[4px] border-b-[#DFE1E4] border-b mb-[24px] px-3 bg-gray-100 h-14 flex items-center"
+                      class="w-full rounded-[4px] border-b-[#F9F9F9] border-b mb-[24px] px-3 bg-gray-100 h-14 flex items-center"
                     >
                       <img
                         src="../../../assets/pageIcon.svg"
