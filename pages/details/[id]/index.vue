@@ -7,7 +7,7 @@
       <div class="border-b-[##ECEDEF] border-b mb-6">
         <div class="text-[#667085] text-base pb-6 px-[32px] py-[36px]">
           Form Templates /
-          <span class="font-medium">My Personalized Form</span>
+          <span class="font-medium"> {{ $route.params.id }}</span>
         </div>
         <div class="flex justify-between items-center px-[32px]">
           <h3 class="text-[#101828] text-[32px] font-medium pb-6">Templates</h3>
@@ -301,6 +301,7 @@ export default {
     },
     onDrop(event) {
       event.preventDefault();
+      z;
       const itemType = event.dataTransfer.getData("itemType");
       if (itemType === "page") {
         this.droppedItems.push({
@@ -348,5 +349,10 @@ export default {
       console.log("Dropped Items:", this.droppedItems);
     },
   },
+  //   mounted() {
+  //     // Access the route parameter
+  //     const title = this.$route.params.id;
+  //     console.log("Title:", title);
+  //   },
 };
 </script>
