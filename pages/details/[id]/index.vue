@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-[80px] pt-6 px-6">
+  <div class="mt-[80px] pt-6 md:px-6">
     <div
-      class="bg-white rounded-lg !h-[calc(100vh-120px)] md:overflow-y-scroll pb-6"
+      class="bg-white rounded-lg !h-[calc(100vh-120px)] overflow-y-scroll pb-6"
     >
       <!-- Top -->
       <div class="border-b-[##ECEDEF] border-b mb-6">
@@ -9,24 +9,26 @@
           Form Templates /
           <span class="font-medium">{{ $route.params.id }}</span>
         </div>
-        <div class="flex justify-between items-center px-[32px]">
-          <h3 class="text-[#101828] text-[32px] font-medium pb-6">Templates</h3>
+        <div class="md:flex justify-between items-center px-[32px]">
+          <h3 class="text-[#101828] md:text-[32px] font-medium pb-6">
+            Templates
+          </h3>
           <button
-            class="py-3 rounded-[6px] mb-[5px] text-white text-base font-semibold px-6 bg-[#4D6CBB]"
+            class="py-3 px-3 rounded-[6px] mb-[5px] w-full md:w-auto text-white text-base font-semibold md:px-6 bg-[#4D6CBB]"
           >
             Save
           </button>
         </div>
       </div>
-      <div class="px-[32px]">
-        <div class="flex justify-between gap-6">
+      <div class="md:px-[32px]">
+        <div class="md:flex justify-between gap-6">
           <!-- Left -->
 
           <div
             :class="{
               'border-[#4D6CBB] border-2 rounded-lg': droppedItems.length > 0,
             }"
-            class="bg-[#F9FBFF] px-8 py-6 w-3/4 h-max"
+            class="bg-[#F9FBFF] px-8 py-6 md:w-3/4 h-max mb-3 md:!mb-0"
             @dragover.prevent
             @drop="onDrop"
           >
@@ -209,7 +211,9 @@
             <!-- <button @click="printFormData">Print Form Data</button> -->
           </div>
           <!-- Right -->
-          <div class="w-2/4 border border-[#DFE1E4] rounded-md py-6 px-6">
+          <div
+            class="w-full md:w-2/4 border border-[#DFE1E4] rounded-md py-6 px-6"
+          >
             <h3 class="text-[#101828] text-base font-medium pb-6">
               Form Elements
             </h3>
