@@ -49,7 +49,7 @@
     </template>
     <template v-slot:footer>
       <button
-        @click="printForm()"
+        @click="submitForm()"
         :disabled="!enableBtn"
         class="py-3 rounded-[6px] mx-auto mt-6 flex justify-center items-center text-white text-base font-semibold px-6 bg-[#4D6CBB]"
         :class="{ 'bg-[#ECEDEF]': !enableBtn }"
@@ -85,7 +85,7 @@ export default {
         this.enableBtn = false;
       }
     },
-    printForm() {
+    submitForm() {
       console.log(this.title, this.description);
     },
   },
