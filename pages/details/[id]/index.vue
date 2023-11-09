@@ -13,9 +13,10 @@
           Templates
         </h3>
       </div>
-      <!-- Left -->
       <div class="px-[32px]">
         <div class="flex justify-between gap-6">
+          <!-- Left -->
+
           <div
             :class="{
               'border-[#4D6CBB] border-2 rounded-lg': droppedItems.length > 0,
