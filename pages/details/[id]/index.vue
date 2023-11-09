@@ -9,9 +9,14 @@
           Form Templates /
           <span class="font-medium">My Personalized Form</span>
         </div>
-        <h3 class="text-[#101828] text-[32px] font-medium pb-6 px-[32px]">
-          Templates
-        </h3>
+        <div class="flex justify-between items-center px-[32px]">
+          <h3 class="text-[#101828] text-[32px] font-medium pb-6">Templates</h3>
+          <button
+            class="py-3 rounded-[6px] mb-[5px] text-white text-base font-semibold px-6 bg-[#4D6CBB]"
+          >
+            Save
+          </button>
+        </div>
       </div>
       <div class="px-[32px]">
         <div class="flex justify-between gap-6">
