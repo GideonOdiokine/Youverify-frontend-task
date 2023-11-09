@@ -6,7 +6,7 @@
       <!-- Left -->
       <div class="flex justify-between gap-6">
         <div
-          class="bg-[#F9FBFF] px-8 py-6 w-3/4"
+          class="bg-[#F9FBFF] px-8 py-6 w-3/4 h-max"
           @dragover.prevent
           @drop="onDrop"
         >
@@ -87,9 +87,8 @@
               <label
                 class="flex justify-between mx-0 px-[10px] border-none text-[#101828] font-medium text-sm py-2"
                 v-if="item.type === 'date'"
+                >Date</label
               >
-                Date
-              </label>
               <input
                 type="date"
                 v-model="item.value"
@@ -138,7 +137,7 @@
                     />
                     <input
                       type="search"
-                      v-model="newOption"
+                      v-model="item.newOption"
                       class="w-11/12 bg-transparent text-sm outline-none"
                       placeholder="Add Page description"
                     />
@@ -158,7 +157,7 @@
                       :id="`option-${index}-${optionIndex}`"
                     />
                     <label
-                      class="text-sm tex-[#101828] font-normal"
+                      class="text-sm text-[#101828] font-normal"
                       :for="`option-${index}-${optionIndex}`"
                       >{{ option }}</label
                     >
@@ -184,9 +183,7 @@
           </div>
           <!-- <button @click="printFormData">Print Form Data</button> -->
         </div>
-
         <!-- Right -->
-
         <div class="w-2/4 border border-[#DFE1E4] rounded-md py-6 px-6">
           <h3 class="text-[#101828] text-base font-medium pb-6">
             Form Elements
@@ -216,12 +213,9 @@
             <img src="../../../assets/checkbox.svg" class="w-6 mr-2" alt="" />
             Checkbox
           </div>
-
           <h4 class="text-[#626975] text-sm font-medium py-[18px]">LAYOUT</h4>
           <div
             class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
-            @dragstart="onDragStart('text')"
-            draggable="true"
           >
             <img src="../../../assets/group.svg" class="w-[27px] mr-2" alt="" />
             Group
@@ -240,8 +234,6 @@
           </div>
           <div
             class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] rounded-md font-medium"
-            @dragstart="onDragStart('checkbox')"
-            draggable="true"
           >
             <img
               src="../../../assets/listIcon.svg"
@@ -263,7 +255,6 @@ export default {
       name: "",
       description: "",
       droppedItems: [],
-      newOption: "",
     };
   },
   methods: {
@@ -279,6 +270,7 @@ export default {
           label: "Label",
           options: [],
           selectedOption: null,
+          newOption: "", // Initialize newOption per page
         });
       } else {
         this.droppedItems.push({ type: itemType, label: "Label", value: "" });
@@ -294,9 +286,11 @@ export default {
       this.droppedItems[pageIndex].options.splice(optionIndex, 1);
     },
     addOption(pageIndex) {
-      if (this.newOption) {
-        this.droppedItems[pageIndex].options.push(this.newOption);
-        this.newOption = "";
+      if (this.droppedItems[pageIndex].newOption) {
+        this.droppedItems[pageIndex].options.push(
+          this.droppedItems[pageIndex].newOption
+        );
+        this.droppedItems[pageIndex].newOption = "";
       }
     },
     printFormData() {
