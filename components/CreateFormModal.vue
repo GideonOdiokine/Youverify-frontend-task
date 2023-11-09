@@ -2,7 +2,9 @@
   <modal @close="closeModal()">
     <template v-slot:header>
       <div class="flex justify-between mb-6">
-        <h3 class="text-2xl font-medium text-[#101828]">Create New Template</h3>
+        <h3 class="md:text-2xl font-medium text-[#101828]">
+          Create New Template
+        </h3>
         <img
           src="../assets/close.svg"
           alt="plus"

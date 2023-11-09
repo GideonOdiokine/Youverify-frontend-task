@@ -1,34 +1,40 @@
 <template>
-  <div class="w-full">
+  <div class="hidden md:flex w-full">
     <table class="border-collapse w-[100%]">
       <thead class="bg-[#F9FAFB] border-b-[#B2B8BD] border-b">
         <tr class="w-full flex flex-1">
-          <th class="py-[17px] flex flex-1 !mx-9">
-            <div class="text-[#101828] text-base font-medium">Name</div>
+          <th class="py-[17px] flex flex-1 items-center !mx-9">
+            <div class="text-[#101828] text-xs md:text-base font-medium">
+              Name
+            </div>
             <img
               src="../assets/tableIcon.svg"
               alt=""
               class="w-[11px] cursor-pointer ml-[8px] transform hover:translate-x-1 transition 200 ease-in"
             />
           </th>
-          <th class="py-[17px] flex flex-1">
-            <div class="text-[#101828] text-base font-medium">Modified By</div>
+          <th class="py-[17px] flex flex-1 items-center">
+            <div class="text-[#101828] text-xs md:text-base font-medium">
+              Modified By
+            </div>
             <img
               src="../assets/tableIcon.svg"
               alt=""
               class="w-[11px] cursor-pointer ml-[8px] transform hover:translate-x-1 transition 200 ease-in"
             />
           </th>
-          <th class="py-[17px] flex flex-1">
-            <div class="text-[#101828] text-base font-medium">Date created</div>
+          <th class="py-[17px] flex flex-1 items-center">
+            <div class="text-[#101828] text-xs md:text-base font-medium">
+              Date created
+            </div>
             <img
               src="../assets/tableIcon.svg"
               alt=""
               class="w-[11px] cursor-pointer ml-[8px] transform hover:translate-x-1 transition 200 ease-in"
             />
           </th>
-          <th class="py-[17px] flex flex-1">
-            <div class="text-[#101828] text-base font-medium">
+          <th class="py-[17px] flex flex-1 items-center">
+            <div class="text-[#101828] text-xs md:text-base font-medium">
               Last Modified
             </div>
             <img

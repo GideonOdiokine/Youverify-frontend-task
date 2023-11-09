@@ -79,4 +79,10 @@ export default {};
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+@media (max-width: 540px) {
+  .modal-container {
+    width: auto;
+    margin: 20px;
+  }
+}
 </style>
