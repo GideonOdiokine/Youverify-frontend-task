@@ -6,6 +6,9 @@
       <!-- Left -->
       <div class="flex justify-between gap-6">
         <div
+          :class="{
+            'border-[#4D6CBB] border-2 rounded-lg': droppedItems.length > 0,
+          }"
           class="bg-[#F9FBFF] px-8 py-6 w-3/4 h-max"
           @dragover.prevent
           @drop="onDrop"
