@@ -96,7 +96,91 @@
                 class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg w-full"
               />
             </div>
-            <button @click="removeItem(index)">Delete</button>
+            <div v-else-if="item.type === 'page'">
+              <div
+                class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm mb-4 py-2"
+                v-if="item.type === 'page'"
+              >
+                <div class="flex gap-4">
+                  <img
+                    src="../../../assets/saveIcon.svg"
+                    class="w-5 cursor-pointer"
+                    alt=""
+                  />
+                  <img
+                    src="../../../assets/copy.svg"
+                    class="w-5 cursor-pointer"
+                    alt=""
+                  />
+                  <img
+                    src="../../../assets/delete.svg"
+                    class="w-5 cursor-pointer"
+                    alt=""
+                    @click="removeItem(index)"
+                  />
+                </div>
+                <img
+                  src="../../../assets/dot.svg"
+                  class="w-5 cursor-pointer"
+                  alt=""
+                />
+              </div>
+              <div>
+                <div class="w-full justify-between items-center hidden md:flex">
+                  <div
+                    id="search"
+                    class="w-full rounded-[4px] border-b-[#DFE1E4] border-b mb-[24px] px-3 bg-gray-100 h-14 flex items-center"
+                  >
+                    <img
+                      src="../../../assets/pageIcon.svg"
+                      alt=""
+                      class="w-[24px] cursor-pointer mr-[12px] transform hover:translate-x-1 transition 200 ease-in"
+                    />
+                    <input
+                      type="search"
+                      v-model="newOption"
+                      class="w-11/12 bg-transparent text-sm outline-none"
+                      placeholder="Add Page description"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                v-for="(option, optionIndex) in item.options"
+                :key="optionIndex"
+              >
+                <div class="flex justify-between pb-[28px]">
+                  <div class="space-x-3">
+                    <input
+                      type="radio"
+                      v-model="item.selectedOption"
+                      :value="option"
+                      :id="`option-${index}-${optionIndex}`"
+                    />
+                    <label
+                      class="text-sm tex-[#101828] font-normal"
+                      :for="`option-${index}-${optionIndex}`"
+                      >{{ option }}</label
+                    >
+                  </div>
+
+                  <button @click="removeOption(index, optionIndex)">
+                    <img
+                      src="../../../assets/closePage.svg"
+                      class="w-5 cursor-pointer"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </div>
+              <button
+                @click="addOption(index)"
+                class="text-[#4D6CBB] text-sm font-medium"
+              >
+                <input type="radio" class="mr-3" />
+                Add option
+              </button>
+            </div>
           </div>
           <!-- <button @click="printFormData">Print Form Data</button> -->
         </div>
@@ -144,7 +228,7 @@
           </div>
           <div
             class="flex items-center px-3 py-4 mb-4 border text-sm text-[#101828] border-[#DFE1E4] rounded-md font-medium"
-            @dragstart="onDragStart('date')"
+            @dragstart="onDragStart('page')"
             draggable="true"
           >
             <img
@@ -179,6 +263,7 @@ export default {
       name: "",
       description: "",
       droppedItems: [],
+      newOption: "",
     };
   },
   methods: {
@@ -188,12 +273,15 @@ export default {
     onDrop(event) {
       event.preventDefault();
       const itemType = event.dataTransfer.getData("itemType");
-      if (itemType) {
-        let item = { type: itemType, label: "Label", value: "" };
-        if (itemType === "date") {
-          item.value = ""; // Initialize the value for the date input
-        }
-        this.droppedItems.push(item);
+      if (itemType === "page") {
+        this.droppedItems.push({
+          type: itemType,
+          label: "Label",
+          options: [],
+          selectedOption: null,
+        });
+      } else {
+        this.droppedItems.push({ type: itemType, label: "Label", value: "" });
       }
     },
     updateLabel(event, index) {
@@ -201,6 +289,15 @@ export default {
     },
     removeItem(index) {
       this.droppedItems.splice(index, 1);
+    },
+    removeOption(pageIndex, optionIndex) {
+      this.droppedItems[pageIndex].options.splice(optionIndex, 1);
+    },
+    addOption(pageIndex) {
+      if (this.newOption) {
+        this.droppedItems[pageIndex].options.push(this.newOption);
+        this.newOption = "";
+      }
     },
     printFormData() {
       // Collect and print the form data
