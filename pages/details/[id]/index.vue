@@ -130,7 +130,6 @@
                       src="../../../assets/copy.svg"
                       class="w-5 cursor-pointer"
                       alt=""
-                      @click="copyPage(index)"
                     />
                     <!-- Add a click event to copy the page -->
 
@@ -331,16 +330,16 @@ export default {
         this.droppedItems[pageIndex].newOption = "";
       }
     },
-    copyPage(index) {
-      // Clone the page at the specified index
-      const pageToCopy = { ...this.droppedItems[index] };
+    // copyPage(index) {
+    //   // Clone the page at the specified index
+    //   const pageToCopy = { ...this.droppedItems[index] };
 
-      // Add a unique identifier to the copied page (if needed)
-      pageToCopy.label += " (Copy)";
+    //   // Add a unique identifier to the copied page (if needed)
+    //   pageToCopy.label += " (Copy)";
 
-      // Insert the copied page right after the original
-      this.droppedItems.splice(index + 1, 0, pageToCopy);
-    },
+    //   // Insert the copied page right after the original
+    //   this.droppedItems.splice(index + 1, 0, pageToCopy);
+    // },
     printFormData() {
       // Collect and print the form data
       console.log("Name:", this.name);
