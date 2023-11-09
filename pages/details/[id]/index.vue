@@ -69,29 +69,47 @@
                 class="border-[#DFE1E4] rounded-lg py-4 px-[10px] border w-full outline-none"
               />
             </div>
-            <div
-              v-else-if="item.type === 'checkbox'"
-              class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
-            >
-              <!-- <label
+            <div v-else-if="item.type === 'checkbox'">
+              <label
                 for="checkbox-input"
-                @blur="updateLabel($event, index)"
-                :contenteditable="item.type === 'checkbox'"
+                class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
                 >Checkbox:</label
-              > -->
-              <input type="checkbox" v-model="item.value" id="checkbox-input" />
+              >
+              <input
+                type="checkbox"
+                v-model="item.value"
+                id="checkbox-input"
+                class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
+              />
+            </div>
+
+            <div v-else-if="item.type === 'date'">
+              <label
+                class="flex justify-between mx-0 px-[10px] border-none text-[#101828] font-medium text-sm py-2"
+                v-if="item.type === 'date'"
+              >
+                Date
+              </label>
+              <input
+                type="date"
+                v-model="item.value"
+                class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg w-full"
+              />
             </div>
             <button @click="removeItem(index)">Delete</button>
           </div>
           <!-- <button @click="printFormData">Print Form Data</button> -->
         </div>
+
+        <!-- Right -->
+
         <div class="w-2/4 border border-[#DFE1E4] rounded-md py-6 px-6">
           <h3 class="text-[#101828] text-base font-medium pb-6">
             Form Elements
           </h3>
           <h4 class="text-[#626975] text-sm font-medium pb-[18px]">INPUT</h4>
           <div
-            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md"
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
             @dragstart="onDragStart('text')"
             draggable="true"
           >
@@ -99,16 +117,57 @@
             Text Input
           </div>
           <div
-            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md"
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
+            @dragstart="onDragStart('date')"
+            draggable="true"
+          >
+            <img src="../../../assets/dateField.svg" class="w-6 mr-2" alt="" />
+            Date
+          </div>
+          <div
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
             @dragstart="onDragStart('checkbox')"
             draggable="true"
           >
             <img src="../../../assets/checkbox.svg" class="w-6 mr-2" alt="" />
             Checkbox
           </div>
+
+          <h4 class="text-[#626975] text-sm font-medium py-[18px]">LAYOUT</h4>
+          <div
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
+            @dragstart="onDragStart('text')"
+            draggable="true"
+          >
+            <img src="../../../assets/group.svg" class="w-[27px] mr-2" alt="" />
+            Group
+          </div>
+          <div
+            class="flex items-center px-3 py-4 mb-4 border text-sm text-[#101828] border-[#DFE1E4] rounded-md font-medium"
+            @dragstart="onDragStart('date')"
+            draggable="true"
+          >
+            <img
+              src="../../../assets/pageIcon.svg"
+              class="w-[27px] mr-2"
+              alt=""
+            />
+            Page
+          </div>
+          <div
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] rounded-md font-medium"
+            @dragstart="onDragStart('checkbox')"
+            draggable="true"
+          >
+            <img
+              src="../../../assets/listIcon.svg"
+              class="w-[27px] mr-2"
+              alt=""
+            />
+            List
+          </div>
         </div>
       </div>
-      <!-- Right -->
     </div>
   </div>
 </template>
@@ -130,7 +189,11 @@ export default {
       event.preventDefault();
       const itemType = event.dataTransfer.getData("itemType");
       if (itemType) {
-        this.droppedItems.push({ type: itemType, label: "Label", value: "" });
+        let item = { type: itemType, label: "Label", value: "" };
+        if (itemType === "date") {
+          item.value = ""; // Initialize the value for the date input
+        }
+        this.droppedItems.push(item);
       }
     },
     updateLabel(event, index) {
