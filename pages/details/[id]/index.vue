@@ -375,15 +375,40 @@ export default {
     submitForm() {
       this.loading = true;
 
+      // Collect the form data
+      const name = this.name;
+      const description = this.description;
+      const droppedItems = this.droppedItems;
+      const id = this.$route.params.id;
+      //   create an array with names and return one at a random
+      const names = ["Alice", "Bob", "Carol", "Dave", "Eve"];
+
+      // Get a random index from the names array
+      const randomIndex = Math.floor(Math.random() * names.length);
+
+      // Return the name at the random index
+      const randomName = names[randomIndex];
+
+      const existingFormData =
+        JSON.parse(localStorage.getItem("formData")) || [];
+
+      // Add the new form data to the existing form data
+      existingFormData.push({
+        name: this.name,
+        description: this.description,
+        droppedItems: this.droppedItems,
+        id,
+        randomName,
+      });
+
+      // Save the updated form data to localStorage
+      localStorage.setItem("formData", JSON.stringify(existingFormData));
+
       setTimeout(() => {
         // Set loading back to false
         this.loading = false;
         this.showSuccessModal = true;
       }, 2000);
-      // Collect and print the form data
-      console.log("Name:", this.name);
-      console.log("Description:", this.description);
-      console.log("Dropped Items:", this.droppedItems);
     },
   },
 };

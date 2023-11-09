@@ -49,22 +49,22 @@
       <div class="overflow-auto h-[calc(100%+80px)]">
         <tbody
           class="w-full flex pt-[32px]"
-          v-for="(item, index) in items"
+          v-for="(formTemplate, index) in formTemplates"
           :key="index"
         >
           <tr class="flex-1 !mx-9 font-medium text-sm text-[#101828]">
-            <td>{{ item.name }}</td>
+            <td>{{ formTemplate.id }}</td>
           </tr>
           <tr class="flex-1 font-medium text-sm text-[#101828]">
-            <td>{{ item.createdAt }}</td>
+            <td>{{ formTemplate.randomName }}</td>
           </tr>
           <tr class="flex-1 font-medium text-sm text-[#101828]">
-            <td>{{ item.lastModified }}</td>
+            <td>2023-01-10</td>
           </tr>
           <tr class="flex-1 font-medium text-sm text-[#101828]">
-            <td>{{ item.createdAt }}</td>
+            <td>2023-01-01</td>
           </tr>
-          <!-- <td class="px-4 py-2">{{ item.createdAt }}</td> -->
+          <!-- <td class="px-4 py-2">2023-01-01</td> -->
         </tbody>
       </div>
       <!-- </> -->
@@ -78,19 +78,38 @@ export default {
     return {
       items: [
         {
-          name: "Item 1",
+          id: "Item 1",
           createdAt: "2023-01-01",
-          createdBy: "User A",
+          randomName: "User A",
           lastModified: "2023-01-10",
         },
         {
-          name: "Item 2",
+          id: "Item 2",
           createdAt: "2023-02-05",
-          createdBy: "User B",
+          randomName: "User B",
           lastModified: "2023-03-20",
         },
       ],
+      formTemplates: [],
     };
+  },
+  mounted() {
+    if (localStorage) {
+      // Get the existing form templates from localStorage
+      const existingFormTemplates =
+        JSON.parse(localStorage.getItem("formData")) || [];
+
+      // If there are existing form templates, use them
+      if (existingFormTemplates.length > 0) {
+        this.formTemplates = existingFormTemplates;
+      } else {
+        // If no existing form templates, use the default items
+        this.formTemplates = this.items;
+      }
+
+      // Save the form templates to localStorage
+      localStorage.setItem("formData", JSON.stringify(this.formTemplates));
+    }
   },
 };
 </script>
