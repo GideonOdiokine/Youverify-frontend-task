@@ -1,7 +1,7 @@
 <template>
   <div class="mt-[80px] pt-6 px-6">
     <div
-      class="bg-white rounded-lg !h-[calc(100vh-120px)] md:overflow-y-scroll lg:overflow-auto"
+      class="bg-white rounded-lg !h-[calc(100vh-120px)] md:overflow-y-scroll pb-6"
     >
       <!-- Top -->
       <div class="border-b-[##ECEDEF] border-b mb-6">
@@ -124,7 +124,10 @@
                       src="../../../assets/copy.svg"
                       class="w-5 cursor-pointer"
                       alt=""
+                      @click="copyPage(index)"
                     />
+                    <!-- Add a click event to copy the page -->
+
                     <img
                       src="../../../assets/delete.svg"
                       class="w-5 cursor-pointer"
@@ -321,6 +324,16 @@ export default {
         );
         this.droppedItems[pageIndex].newOption = "";
       }
+    },
+    copyPage(index) {
+      // Clone the page at the specified index
+      const pageToCopy = { ...this.droppedItems[index] };
+
+      // Add a unique identifier to the copied page (if needed)
+      pageToCopy.label += " (Copy)";
+
+      // Insert the copied page right after the original
+      this.droppedItems.splice(index + 1, 0, pageToCopy);
     },
     printFormData() {
       // Collect and print the form data
