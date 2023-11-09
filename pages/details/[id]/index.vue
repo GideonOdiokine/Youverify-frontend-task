@@ -270,7 +270,7 @@ export default {
           label: "Label",
           options: [],
           selectedOption: null,
-          newOption: "", // Initialize newOption per page
+          newOption: "",
         });
       } else {
         this.droppedItems.push({ type: itemType, label: "Label", value: "" });
