@@ -241,69 +241,91 @@
             </h3>
             <h4 class="text-[#626975] text-sm font-medium pb-[18px]">INPUT</h4>
             <div
-              class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
               @dragstart="onDragStart('text')"
               draggable="true"
             >
-              <img
-                src="../../../assets/textField.svg"
-                class="w-6 mr-2"
-                alt=""
-              />
-              Text Input
+              <div class="flex items-center px-3">
+                <img
+                  src="../../../assets/textField.svg"
+                  class="w-6 mr-2"
+                  alt=""
+                />
+                Text Input
+              </div>
+              <img src="../../../assets/dot.svg" class="w-6" alt="" />
             </div>
             <div
-              class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
               @dragstart="onDragStart('date')"
               draggable="true"
             >
-              <img
-                src="../../../assets/dateField.svg"
-                class="w-6 mr-2"
-                alt=""
-              />
-              Date
+              <div class="flex items-center px-3">
+                <img
+                  src="../../../assets/dateField.svg"
+                  class="w-6 mr-2"
+                  alt=""
+                />
+                Date
+              </div>
+              <img src="../../../assets/dot.svg" class="w-6" alt="" />
             </div>
             <div
-              class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
               @dragstart="onDragStart('checkbox')"
               draggable="true"
             >
-              <img src="../../../assets/checkbox.svg" class="w-6 mr-2" alt="" />
-              Checkbox
+              <div class="flex items-center px-3">
+                <img
+                  src="../../../assets/checkbox.svg"
+                  class="w-6 mr-2"
+                  alt=""
+                />
+                Checkbox
+              </div>
+              <img src="../../../assets/dot.svg" class="w-6" alt="" />
             </div>
             <h4 class="text-[#626975] text-sm font-medium py-[18px]">LAYOUT</h4>
             <div
-              class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
             >
-              <img
-                src="../../../assets/group.svg"
-                class="w-[27px] mr-2"
-                alt=""
-              />
-              Group
+              <div class="flex items-center px-3">
+                <img
+                  src="../../../assets/group.svg"
+                  class="w-[27px] mr-2"
+                  alt=""
+                />
+                Group
+              </div>
+              <img src="../../../assets/dot.svg" class="w-6" alt="" />
             </div>
             <div
-              class="flex items-center px-3 py-4 mb-4 border text-sm text-[#101828] border-[#DFE1E4] rounded-md font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border text-sm text-[#101828] border-[#DFE1E4] rounded-md font-medium"
               @dragstart="onDragStart('page')"
               draggable="true"
             >
-              <img
-                src="../../../assets/pageIcon.svg"
-                class="w-[27px] mr-2"
-                alt=""
-              />
-              Page
+              <div class="flex items-center px-3">
+                <img
+                  src="../../../assets/pageIcon.svg"
+                  class="w-[27px] mr-2"
+                  alt=""
+                />
+                Page
+              </div>
+              <img src="../../../assets/dot.svg" class="w-6" alt="dot" />
             </div>
             <div
-              class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] rounded-md font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] rounded-md font-medium"
             >
-              <img
-                src="../../../assets/listIcon.svg"
-                class="w-[27px] mr-2"
-                alt=""
-              />
-              List
+              <div class="flex items-center px-3">
+                <img
+                  src="../../../assets/listIcon.svg"
+                  class="w-[27px] mr-2"
+                  alt=""
+                />
+                List
+              </div>
+              <img src="../../../assets/dot.svg" class="w-6" alt="dot" />
             </div>
           </div>
         </div>
