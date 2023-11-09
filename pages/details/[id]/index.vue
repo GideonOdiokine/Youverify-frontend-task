@@ -4,9 +4,9 @@
       class="bg-white rounded-lg !h-[calc(100vh-120px)] md:overflow-y-scroll lg:overflow-auto px-[32px] py-[36px]"
     >
       <!-- Left -->
-      <div class="flex justify-between">
+      <div class="flex justify-between gap-6">
         <div
-          class="bg-[#F9FBFF] px-8 py-6 w-[624px]"
+          class="bg-[#F9FBFF] px-8 py-6 w-3/4"
           @dragover.prevent
           @drop="onDrop"
         >
@@ -83,22 +83,28 @@
             </div>
             <button @click="removeItem(index)">Delete</button>
           </div>
-          <button @click="printFormData">Print Form Data</button>
+          <!-- <button @click="printFormData">Print Form Data</button> -->
         </div>
-        <div>
+        <div class="w-2/4 border border-[#DFE1E4] rounded-md py-6 px-6">
+          <h3 class="text-[#101828] text-base font-medium pb-6">
+            Form Elements
+          </h3>
+          <h4 class="text-[#626975] text-sm font-medium pb-[18px]">INPUT</h4>
           <div
-            class="draggable"
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md"
             @dragstart="onDragStart('text')"
             draggable="true"
           >
-            <i class="fas fa-font"></i> Text Input
+            <img src="../../../assets/textField.svg" class="w-6 mr-2" alt="" />
+            Text Input
           </div>
           <div
-            class="draggable"
+            class="flex items-center px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md"
             @dragstart="onDragStart('checkbox')"
             draggable="true"
           >
-            <i class="fas fa-check-square"></i> Checkbox
+            <img src="../../../assets/checkbox.svg" class="w-6 mr-2" alt="" />
+            Checkbox
           </div>
         </div>
       </div>
@@ -142,34 +148,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.default-input {
-  margin-bottom: 10px;
-}
-
-.draggable {
-  /* margin: 10px 0; */
-  padding: 10px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.droppable {
-  margin-top: 20px;
-  padding: 20px;
-  border: 2px dashed #ccc;
-}
-
-.dropped-item {
-  margin-top: 10px;
-}
-
-label {
-  font-weight: bold;
-  border: 1px solid #ccc;
-  padding: 5px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-</style>
