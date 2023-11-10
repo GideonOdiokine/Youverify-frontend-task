@@ -79,7 +79,12 @@
                   v-if="item.type === 'text'"
                 >
                   <span class="px-[10px]">Text Input:</span>
-                  <img src="../../../assets/dot.svg" class="w-6" alt="" />
+                  <img
+                    src="../../../assets/dot.svg"
+                    class="w-6"
+                    alt=""
+                    draggable="false"
+                  />
                 </label>
                 <input
                   v-if="item.type === 'text'"
@@ -101,6 +106,7 @@
                   v-model="item.value"
                   id="checkbox-input"
                   class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
+                  draggable="false"
                 />
               </div>
 
@@ -147,6 +153,7 @@
                     src="../../../assets/dot.svg"
                     class="w-6 cursor-pointer"
                     alt=""
+                    draggable="false"
                   />
                 </div>
                 <div>
@@ -225,7 +232,7 @@
             </h3>
             <h4 class="text-[#626975] text-sm font-medium pb-[18px]">INPUT</h4>
             <div
-              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium cursor-pointer"
             >
               <div class="flex items-center px-3">
                 <img
@@ -245,7 +252,7 @@
               />
             </div>
             <div
-              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md cursor-pointer"
             >
               <div class="flex items-center px-3">
                 <img
@@ -265,7 +272,7 @@
               />
             </div>
             <div
-              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium cursor-pointer"
             >
               <div class="flex items-center px-3">
                 <img
@@ -300,7 +307,7 @@
               <img src="../../../assets/dot.svg" class="w-6" alt="" />
             </div>
             <div
-              class="flex items-center justify-between px-3 py-4 mb-4 border text-sm text-[#101828] border-[#DFE1E4] rounded-md font-medium"
+              class="flex items-center justify-between px-3 py-4 mb-4 border text-sm text-[#101828] border-[#DFE1E4] rounded-md font-medium cursor-pointer"
               @dragstart="onDragStart('page')"
               draggable="true"
             >
