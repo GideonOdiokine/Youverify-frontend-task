@@ -385,6 +385,10 @@ export default {
     onDrop(event) {
       event.preventDefault();
       const itemType = event.dataTransfer.getData("itemType");
+      this.createFormItem(itemType);
+    },
+
+    createFormItem(itemType) {
       if (itemType === "page") {
         this.droppedItems.push({
           type: itemType,

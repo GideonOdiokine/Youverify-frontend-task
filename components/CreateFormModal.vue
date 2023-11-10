@@ -41,6 +41,7 @@
           <textarea
             id="Description"
             title="Description"
+            rows="4"
             v-model="description"
             @input="validateInput"
             placeholder="Type message here.."
