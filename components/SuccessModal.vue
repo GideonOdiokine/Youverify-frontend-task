@@ -44,7 +44,7 @@ export default {
     submitForm() {
       //   console.log(this.title, this.description);
       //   this.$emit("close");
-      navigateTo(`/`);
+      //   navigateTo(`/`);
     },
   },
 };

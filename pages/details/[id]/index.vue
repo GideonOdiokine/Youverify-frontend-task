@@ -45,7 +45,6 @@
       <div class="md:px-[32px]">
         <div class="md:flex justify-between gap-6">
           <!-- Left -->
-
           <div
             :class="{
               'border-[#4D6CBB] border-2 rounded-lg': droppedItems.length > 0,
@@ -53,6 +52,8 @@
             class="bg-[#F9FBFF] px-8 py-6 md:w-3/4 h-max mb-3 md:!mb-0"
             @dragover.prevent
             @drop="onDrop"
+            @dragenter="onDragEnter"
+            @dragleave="onDragLeave"
           >
             <div
               class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
@@ -62,7 +63,12 @@
                 class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
               >
                 <span class="px-[10px]">Subject:</span>
-                <img src="../../../assets/dot.svg" class="w-6" alt="" />
+                <img
+                  src="../../../assets/dot.svg"
+                  class="w-6"
+                  alt=""
+                  draggable="false"
+                />
               </label>
               <input
                 type="text"
@@ -80,7 +86,12 @@
                 for="description"
               >
                 <span class="px-[10px]">Description:</span>
-                <img src="../../../assets/dot.svg" class="w-6" alt="" />
+                <img
+                  src="../../../assets/dot.svg"
+                  class="w-6"
+                  alt=""
+                  draggable="false"
+                />
               </label>
               <input
                 type="text"
@@ -94,6 +105,8 @@
               v-for="(item, index) in droppedItems"
               :key="index"
               class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
+              @dragenter="onDragEnter"
+              @dragleave="onDragLeave"
             >
               <div v-if="item.type === 'text'">
                 <label
@@ -197,13 +210,14 @@
                   v-for="(option, optionIndex) in item.options"
                   :key="optionIndex"
                 >
-                  <div class="flex justify-between pb-[28px]">
-                    <div class="space-x-3">
+                  <div class="flex justify-between items-center pb-[28px]">
+                    <div class="space-x-3 flex items-center">
                       <input
                         type="radio"
                         v-model="item.selectedOption"
                         :value="option"
                         :id="`option-${index}-${optionIndex}`"
+                        class="w-6 h-6"
                       />
                       <label
                         class="text-sm text-[#101828] font-normal"
@@ -223,13 +237,18 @@
                 </div>
                 <button
                   @click="addOption(index)"
-                  class="text-[#4D6CBB] text-sm font-medium"
+                  class="text-[#4D6CBB] flex items-center space-x-3 text-sm font-medium"
                 >
-                  <input type="radio" class="mr-3" />
+                  <input type="radio" class="mr-3 w-6 h-6" />
                   Add option
                 </button>
               </div>
             </div>
+            <div
+              :class="{
+                'bg-[#DBE2F1] rounded-md mt-6 h-[20px] ': isNearDropArea,
+              }"
+            />
             <!-- <button @click="printFormData">Print Form Data</button> -->
           </div>
           <!-- Right -->
@@ -242,48 +261,63 @@
             <h4 class="text-[#626975] text-sm font-medium pb-[18px]">INPUT</h4>
             <div
               class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
-              @dragstart="onDragStart('text')"
-              draggable="true"
             >
               <div class="flex items-center px-3">
                 <img
                   src="../../../assets/textField.svg"
-                  class="w-6 mr-2"
+                  class="w-[49px] mr-2"
                   alt=""
+                  draggable="false"
                 />
                 Text Input
               </div>
-              <img src="../../../assets/dot.svg" class="w-6" alt="" />
+              <img
+                src="../../../assets/dot.svg"
+                class="w-6 cursor-pointer"
+                alt=""
+                @dragstart="onDragStart('text')"
+                draggable="true"
+              />
             </div>
             <div
               class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] font-medium rounded-md"
-              @dragstart="onDragStart('date')"
-              draggable="true"
             >
               <div class="flex items-center px-3">
                 <img
                   src="../../../assets/dateField.svg"
-                  class="w-6 mr-2"
+                  class="w-[49px] mr-2"
                   alt=""
+                  draggable="false"
                 />
                 Date
               </div>
-              <img src="../../../assets/dot.svg" class="w-6" alt="" />
+              <img
+                src="../../../assets/dot.svg"
+                class="w-6 cursor-pointer"
+                alt=""
+                @dragstart="onDragStart('date')"
+                draggable="true"
+              />
             </div>
             <div
               class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium"
-              @dragstart="onDragStart('checkbox')"
-              draggable="true"
             >
               <div class="flex items-center px-3">
                 <img
                   src="../../../assets/checkbox.svg"
-                  class="w-6 mr-2"
+                  class="w-[49px] mr-2"
                   alt=""
+                  draggable="false"
                 />
                 Checkbox
               </div>
-              <img src="../../../assets/dot.svg" class="w-6" alt="" />
+              <img
+                src="../../../assets/dot.svg"
+                class="w-6 cursor-pointer"
+                alt=""
+                @dragstart="onDragStart('checkbox')"
+                draggable="true"
+              />
             </div>
             <h4 class="text-[#626975] text-sm font-medium py-[18px]">LAYOUT</h4>
             <div
@@ -292,8 +326,9 @@
               <div class="flex items-center px-3">
                 <img
                   src="../../../assets/group.svg"
-                  class="w-[27px] mr-2"
+                  class="w-[49px] mr-2"
                   alt=""
+                  draggable="false"
                 />
                 Group
               </div>
@@ -307,12 +342,17 @@
               <div class="flex items-center px-3">
                 <img
                   src="../../../assets/pageIcon.svg"
-                  class="w-[27px] mr-2"
+                  class="w-[49px] mr-2"
                   alt=""
+                  draggable="false"
                 />
                 Page
               </div>
-              <img src="../../../assets/dot.svg" class="w-6" alt="dot" />
+              <img
+                src="../../../assets/dot.svg"
+                class="w-6 cursor-pointer"
+                alt="dot"
+              />
             </div>
             <div
               class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] text-sm text-[#101828] rounded-md font-medium"
@@ -320,8 +360,9 @@
               <div class="flex items-center px-3">
                 <img
                   src="../../../assets/listIcon.svg"
-                  class="w-[27px] mr-2"
+                  class="w-[49px] mr-2"
                   alt=""
+                  draggable="false"
                 />
                 List
               </div>
@@ -331,9 +372,9 @@
         </div>
       </div>
     </div>
-    <div v-if="showSuccessModal">
+    <!-- <div v-if="showSuccessModal">
       <SuccessModal />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -346,11 +387,35 @@ export default {
       droppedItems: [],
       loading: false,
       showSuccessModal: false,
+      isNearDropArea: false,
     };
   },
   methods: {
     onDragStart(itemType) {
       event.dataTransfer.setData("itemType", itemType);
+    },
+    onDragEnter(event) {
+      this.isNearDropArea = true;
+    },
+
+    onDragLeave(event) {
+      this.isNearDropArea = false;
+    },
+    onDragOver(event) {
+      // Calculate the position of the dragged item relative to the drop zone
+      const rect = event.target.getBoundingClientRect();
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      // Define thresholds (adjust as needed) to determine when the item is considered entering the drop zone
+      const horizontalThreshold = 10;
+      const verticalThreshold = 10;
+
+      // Check if the mouse is within the threshold on the right side, bottom, or in the middle in the same line
+      this.isNearDropArea =
+        mouseX >= rect.right - horizontalThreshold ||
+        (mouseX >= rect.left && mouseX <= rect.right) ||
+        mouseY >= rect.bottom - verticalThreshold;
     },
     onDrop(event) {
       event.preventDefault();
@@ -366,6 +431,7 @@ export default {
       } else {
         this.droppedItems.push({ type: itemType, label: "Label", value: "" });
       }
+      this.isNearDropArea = false;
     },
     updateLabel(event, index) {
       this.droppedItems[index].label = event.target.innerText;
@@ -394,13 +460,11 @@ export default {
       // Insert the copied page right after the original
       this.droppedItems.splice(index + 1, 0, pageToCopy);
     },
+
     submitForm() {
       this.loading = true;
 
       // Collect the form data
-      const name = this.name;
-      const description = this.description;
-      const droppedItems = this.droppedItems;
       const id = this.$route.params.id;
       //   create an array with names and return one at a random
       const names = ["Alice", "Bob", "Carol", "Dave", "Eve"];
