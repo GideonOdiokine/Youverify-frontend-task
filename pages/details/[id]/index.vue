@@ -71,6 +71,7 @@
               class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
               @dragenter="onDragEnter"
               @dragleave="onDragLeave"
+              draggable="true"
             >
               <div v-if="item.type === 'text'">
                 <label
@@ -233,6 +234,8 @@
             <h4 class="text-[#626975] text-sm font-medium pb-[18px]">INPUT</h4>
             <div
               class="flex items-center justify-between px-3 py-4 mb-4 border border-[#DFE1E4] rounded-md text-sm text-[#101828] font-medium cursor-pointer"
+              draggable="true"
+              @dragstart="onDragStart('text')"
             >
               <div class="flex items-center px-3">
                 <img
@@ -360,6 +363,7 @@ export default {
       loading: false,
       showSuccessModal: false,
       isNearDropArea: false,
+      uniqueIdCounter: 0,
     };
   },
   methods: {
@@ -397,16 +401,24 @@ export default {
 
     createFormItem(itemType) {
       if (itemType === "page") {
-        this.droppedItems.push({
+        const newPage = {
           type: itemType,
           label: "Label",
           options: [],
           selectedOption: null,
-          newOption: "",
-        });
+          id: this.uniqueIdCounter++,
+        };
+        this.droppedItems.push(newPage);
       } else {
-        this.droppedItems.push({ type: itemType, label: "Label", value: "" });
+        const newItem = {
+          type: itemType,
+          label: "Label",
+          value: "",
+          id: this.uniqueIdCounter++,
+        };
+        this.droppedItems.push(newItem);
       }
+
       this.isNearDropArea = false;
     },
     updateLabel(event, index) {
