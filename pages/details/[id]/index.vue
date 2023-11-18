@@ -65,158 +65,161 @@
                 class="border-[#DFE1E4] rounded-lg py-4 px-[10px] border w-full outline-none"
               />
             </div>
-            <div
-              v-for="(item, index) in droppedItems"
-              :key="index"
-              class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
-              @dragenter="onDragEnter"
-              @dragleave="onDragLeave"
-              draggable="true"
-            >
-              <div v-if="item.type === 'text'">
-                <label
-                  class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
-                  @blur="updateLabel($event, index)"
-                  v-if="item.type === 'text'"
-                >
-                  <span class="px-[10px]">Text Input:</span>
-                  <img
-                    src="../../../assets/dot.svg"
-                    class="w-6"
-                    alt=""
-                    draggable="false"
-                  />
-                </label>
-                <input
-                  v-if="item.type === 'text'"
-                  type="text"
-                  v-model="item.value"
-                  id="text-input"
-                  placeholder="Enter text"
-                  class="border-[#DFE1E4] rounded-lg py-4 px-[10px] border w-full outline-none"
-                />
-              </div>
-              <div v-else-if="item.type === 'checkbox'">
-                <label
-                  for="checkbox-input"
-                  class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
-                  >Checkbox:</label
-                >
-                <input
-                  type="checkbox"
-                  v-model="item.value"
-                  id="checkbox-input"
-                  class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
-                  draggable="false"
-                />
-              </div>
-
-              <div v-else-if="item.type === 'date'">
-                <label
-                  class="flex justify-between mx-0 px-[10px] border-none text-[#101828] font-medium text-sm py-2"
-                  v-if="item.type === 'date'"
-                  >Date</label
-                >
-                <input
-                  type="date"
-                  v-model="item.value"
-                  class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg w-full"
-                />
-              </div>
-              <div v-else-if="item.type === 'page'">
-                <div
-                  class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm mb-4 py-2"
-                  v-if="item.type === 'page'"
-                >
-                  <div class="flex gap-4">
-                    <img
-                      src="../../../assets/saveIcon.svg"
-                      class="w-5 cursor-pointer"
-                      alt=""
-                    />
-                    <!-- Add a click event to copy the page -->
-
-                    <img
-                      src="../../../assets/copy.svg"
-                      class="w-5 cursor-pointer"
-                      alt=""
-                      @click="copyPage(index)"
-                    />
-                    <!-- Delete page -->
-                    <img
-                      src="../../../assets/delete.svg"
-                      class="w-5 cursor-pointer"
-                      alt=""
-                      @click="removeItem(index)"
-                    />
-                  </div>
-                  <img
-                    src="../../../assets/dot.svg"
-                    class="w-6 cursor-pointer"
-                    alt=""
-                    draggable="false"
-                  />
-                </div>
-                <div>
-                  <div
-                    class="w-full justify-between items-center hidden md:flex"
+            <VueDraggable :list="droppedItems">
+              <div
+                v-for="(item, index) in droppedItems"
+                :key="index"
+                class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
+                @dragenter="onDragEnter"
+                @dragleave="onDragLeave"
+                draggable="true"
+              >
+                <div v-if="item.type === 'text'">
+                  <label
+                    class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
+                    @blur="updateLabel($event, index)"
+                    v-if="item.type === 'text'"
                   >
-                    <div
-                      id="search"
-                      class="w-full rounded-[4px] border-b-[#F9F9F9] border-b mb-[24px] px-3 bg-gray-100 h-14 flex items-center"
-                    >
-                      <img
-                        src="../../../assets/pageIcon.svg"
-                        alt=""
-                        class="w-[24px] cursor-pointer mr-[12px] transform hover:translate-x-1 transition 200 ease-in"
-                      />
-                      <input
-                        type="search"
-                        v-model="item.newOption"
-                        class="w-11/12 bg-transparent text-sm outline-none"
-                        placeholder="Add Page description"
-                      />
-                    </div>
-                  </div>
+                    <span class="px-[10px]">Text Input:</span>
+                    <img
+                      src="../../../assets/dot.svg"
+                      class="w-6"
+                      alt=""
+                      draggable="false"
+                    />
+                  </label>
+                  <input
+                    v-if="item.type === 'text'"
+                    type="text"
+                    v-model="item.value"
+                    id="text-input"
+                    placeholder="Enter text"
+                    class="border-[#DFE1E4] rounded-lg py-4 px-[10px] border w-full outline-none"
+                  />
                 </div>
-                <div
-                  v-for="(option, optionIndex) in item.options"
-                  :key="optionIndex"
-                >
-                  <div class="flex justify-between items-center pb-[28px]">
-                    <div class="space-x-3 flex items-center">
-                      <input
-                        type="radio"
-                        v-model="item.selectedOption"
-                        :value="option"
-                        :id="`option-${index}-${optionIndex}`"
-                        class="w-6 h-6"
-                      />
-                      <label
-                        class="text-sm text-[#101828] font-normal"
-                        :for="`option-${index}-${optionIndex}`"
-                        >{{ option }}</label
-                      >
-                    </div>
+                <div v-else-if="item.type === 'checkbox'">
+                  <label
+                    for="checkbox-input"
+                    class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
+                    >Checkbox:</label
+                  >
+                  <input
+                    type="checkbox"
+                    v-model="item.value"
+                    id="checkbox-input"
+                    class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg"
+                    draggable="false"
+                  />
+                </div>
 
-                    <button @click="removeOption(index, optionIndex)">
+                <div v-else-if="item.type === 'date'">
+                  <label
+                    class="flex justify-between mx-0 px-[10px] border-none text-[#101828] font-medium text-sm py-2"
+                    v-if="item.type === 'date'"
+                    >Date</label
+                  >
+                  <input
+                    type="date"
+                    v-model="item.value"
+                    class="bg-white py-3 pb-6 mb-4 px-6 border border-[#DFE1E4] rounded-lg w-full"
+                  />
+                </div>
+                <div v-else-if="item.type === 'page'">
+                  <div
+                    class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm mb-4 py-2"
+                    v-if="item.type === 'page'"
+                  >
+                    <div class="flex gap-4">
                       <img
-                        src="../../../assets/closePage.svg"
+                        src="../../../assets/saveIcon.svg"
                         class="w-5 cursor-pointer"
                         alt=""
                       />
-                    </button>
+                      <!-- Add a click event to copy the page -->
+
+                      <img
+                        src="../../../assets/copy.svg"
+                        class="w-5 cursor-pointer"
+                        alt=""
+                        @click="copyPage(index)"
+                      />
+                      <!-- Delete page -->
+                      <img
+                        src="../../../assets/delete.svg"
+                        class="w-5 cursor-pointer"
+                        alt=""
+                        @click="removeItem(index)"
+                      />
+                    </div>
+                    <img
+                      src="../../../assets/dot.svg"
+                      class="w-6 cursor-pointer"
+                      alt=""
+                      draggable="false"
+                    />
                   </div>
+                  <div>
+                    <div
+                      class="w-full justify-between items-center hidden md:flex"
+                    >
+                      <div
+                        id="search"
+                        class="w-full rounded-[4px] border-b-[#F9F9F9] border-b mb-[24px] px-3 bg-gray-100 h-14 flex items-center"
+                      >
+                        <img
+                          src="../../../assets/pageIcon.svg"
+                          alt=""
+                          class="w-[24px] cursor-pointer mr-[12px] transform hover:translate-x-1 transition 200 ease-in"
+                        />
+                        <input
+                          type="search"
+                          v-model="item.newOption"
+                          class="w-11/12 bg-transparent text-sm outline-none"
+                          placeholder="Add Page description"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    v-for="(option, optionIndex) in item.options"
+                    :key="optionIndex"
+                  >
+                    <div class="flex justify-between items-center pb-[28px]">
+                      <div class="space-x-3 flex items-center">
+                        <input
+                          type="radio"
+                          v-model="item.selectedOption"
+                          :value="option"
+                          :id="`option-${index}-${optionIndex}`"
+                          class="w-6 h-6"
+                        />
+                        <label
+                          class="text-sm text-[#101828] font-normal"
+                          :for="`option-${index}-${optionIndex}`"
+                          >{{ option }}</label
+                        >
+                      </div>
+
+                      <button @click="removeOption(index, optionIndex)">
+                        <img
+                          src="../../../assets/closePage.svg"
+                          class="w-5 cursor-pointer"
+                          alt=""
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    @click="addOption(index)"
+                    class="text-[#4D6CBB] flex items-center space-x-3 text-sm font-medium"
+                  >
+                    <input type="radio" class="mr-3 w-6 h-6" />
+                    Add option
+                  </button>
                 </div>
-                <button
-                  @click="addOption(index)"
-                  class="text-[#4D6CBB] flex items-center space-x-3 text-sm font-medium"
-                >
-                  <input type="radio" class="mr-3 w-6 h-6" />
-                  Add option
-                </button>
               </div>
-            </div>
+            </VueDraggable>
+
             <div
               :class="{
                 'bg-[#DBE2F1] rounded-md mt-6 h-[20px] ': isNearDropArea,
@@ -354,7 +357,12 @@
 </template>
 
 <script>
+import { VueDraggable } from "vue-draggable-plus";
+
 export default {
+  components: {
+    VueDraggable,
+  },
   data() {
     return {
       name: "",
@@ -378,21 +386,24 @@ export default {
       this.isNearDropArea = false;
     },
     onDragOver(event) {
-      // Calculate the position of the dragged item relative to the drop zone
-      const rect = event.target.getBoundingClientRect();
-      const mouseX = event.clientX;
-      const mouseY = event.clientY;
+      event.preventDefault();
 
-      // Define thresholds (adjust as needed) to determine when the item is considered entering the drop zone
-      const horizontalThreshold = 10;
-      const verticalThreshold = 10;
+      // Check if the dragged item is allowed to be dropped based on its type
+      const itemType = event.dataTransfer.getData("itemType");
 
-      // Check if the mouse is within the threshold on the right side, bottom, or in the middle in the same line
-      this.isNearDropArea =
-        mouseX >= rect.right - horizontalThreshold ||
-        (mouseX >= rect.left && mouseX <= rect.right) ||
-        mouseY >= rect.bottom - verticalThreshold;
+      // Add any specific conditions for allowing the drop based on itemType
+      const isAllowedDrop =
+        itemType === "text" || itemType === "checkbox" || itemType === "date";
+
+      if (isAllowedDrop) {
+        // Set isNearDropArea to true to indicate that the drop is allowed
+        this.isNearDropArea = true;
+      } else {
+        // If the dragged item type is not allowed, set isNearDropArea to false
+        this.isNearDropArea = false;
+      }
     },
+
     onDrop(event) {
       event.preventDefault();
       const itemType = event.dataTransfer.getData("itemType");
@@ -400,6 +411,11 @@ export default {
     },
 
     createFormItem(itemType) {
+      // Skip creation if itemType is an empty string
+      if (!itemType) {
+        return;
+      }
+
       if (itemType === "page") {
         const newPage = {
           type: itemType,
@@ -420,6 +436,10 @@ export default {
       }
 
       this.isNearDropArea = false;
+    },
+
+    onDragEnd() {
+      // Update any additional logic after dragging ends
     },
     updateLabel(event, index) {
       this.droppedItems[index].label = event.target.innerText;
@@ -465,6 +485,8 @@ export default {
 
       const existingFormData =
         JSON.parse(localStorage.getItem("formData")) || [];
+
+      console.log(this.droppedItems);
 
       // Add the new form data to the existing form data
       existingFormData.push({

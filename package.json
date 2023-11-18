@@ -17,7 +17,6 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@maptiler/sdk": "^1.1.2",
-    "vuedraggable": "^2.24.3"
+    "vue-draggable-plus": "^0.2.7"
   }
 }
