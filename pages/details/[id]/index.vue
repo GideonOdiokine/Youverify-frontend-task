@@ -79,6 +79,7 @@
                     class="flex justify-between mx-0 !px-0 border-none text-[#101828] font-medium text-sm py-2"
                     @blur="updateLabel($event, index)"
                     v-if="item.type === 'text'"
+                    contenteditable="true"
                   >
                     <span class="px-[10px]">Text Input:</span>
                     <img
